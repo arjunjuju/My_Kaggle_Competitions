@@ -1,0 +1,35 @@
+Working with Titanic Dataset
+The data set is available in Kaggle and we can explore the contents present in it. The data is already split as training and testing data set. We can pandas to analyse the contents of the csv file.  The columns which are present are as follows
+PassengerId- unique identification of each passenger
+Survived- whether the passenger survived the crash or not 1-indicates survived and 0 indicates otherwise.
+PClass- indicates socioeconomic class of the passengers whether they belong to upper, middle or lower class. The possible values are 1,2 and 3.
+Name- Name of the passenger
+Sex- Male/female- gender of the passenger
+Age-Indicates the age of the passenger
+SibSp- Indicates whether the passenger has spouse or siblings. A numerical value is given to it.
+Parch- Indicates whether the passenger has children and or parents. Again numerical value is given to it.
+Ticket- Indicates ticket number.
+Fare- Cost of the fare.
+Cabin- cabin number of the ticket.
+Embarked-Points out to the embarking point of the passenger.
+Among these columns lets us make an analysis and find out of which of them are having empty row values which is specified as NaN in python. You can check them after loading the contents and using print command to print the contents on to the console.
+As per my analysis age and cabin consists of NaN values. We have to figure out a way to handle the values. So first identifying the total number of NaN values in each column.
+Total of 177 rows are having missing or NaN age values and 687 rows are having missing or NaN values for cabin out of total 891 records.
+For predicting whether the passenger survived or not we have to decide which columns of the data we will be using and which ones we will be eliminating. In that case we can decide about fixing the NaN values.
+Columns to be considered for prediction: PClass, Age, SibSp, Parch and Gender. I guess we need to know about the specified to columns to predict whether the passenger would have survived or not. The point of embarkment or cabin or ticket details are just general information which we might not need for predicting something. In the columns which we chose age exists and we need to make decide an approach to handle the age data. We will go through the process in terms of iteration by choosing a way and implementing it and checking the results. Based on the results we decide about further course of action.
+
+Data processing steps
+The first step is the brute force way, we are going to remove all the rows which are having NaN values and proceed with the prediction. It is not the best approach to solve the issue. We can use this approach when just less number of rows have NaN values. In our case its almost around 19% of the entire data. But we can just try out and see what will happen and check our accuracy with testing data.
+ Using dropna doesn’t work, Kaggle submission requires 418 rows to be returned so we have to find out some other work around. In addition to that when we use dropna, we drastically lose data by combining both Cabin and Age data so it is not a wise thing to do.
+Second Approach- This would be finding out a way to fix the age data and ignoring cabin data for prediction purposes.
+Filling out age with random values, what values can we choose??
+One way could be using median to replace the NaN values for age.
+It worked! Accuracy in Kaggle was around 62% for K-Neighbour classification method.
+Trial-2 for second approach using Logistic Regression method.
+Improvement in accuracy, now it is around 67%
+Trial-3 using ensemble methods
+Improvement to an extent but not so much, it’s around 67.9%
+Now we are into the phase of modifying data and trying out various approaches. So we might have to play more with the data and try out various ways to improve the efficiency.
+
+Approach-2 feature engineering and better ways to fill out missing data
+For calculating missing age values we may have to find a different approach instead of using just the median alone.
