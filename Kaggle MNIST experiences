@@ -1,0 +1,34 @@
+Working with MNIST data set
+The next Kaggle competition which I attempted was working with MNIST data set which is also known as Digit recogniser. I used CNN(Convolutional Neural Networks) for predictions. 
+Let us dig deeper step by step with the dataset. Kaggle has already spilt the datasets into train and test.
+Visualizing the data
+This is the image which we obtain// Couldnt paste an image over here, will be uploaded separately
+
+Specific Counts for each and every digit
+1    4684
+7    4401
+3    4351
+9    4188
+2    4177
+6    4137
+0    4132
+4    4072
+8    4063
+5    3795
+So it is evident that we have almost similar amount of digits.
+We have to check if any column is required or not and if there is something which can be avoided, we can remove the specific column.
+I don’t see any necessity to remove any column, so we will keep the data untouched.
+[The code can be seen in the corresponding python file].
+We perform a reshaping operation and there is a specific reasoning behind it, the KERAS convolution layers expect a tenor in the following shape:
+[batch_size, image_width, image_height, channels]
+In which image width and height are self-explanatory. Batch size points out to the size of the subset of examples when performing gradient descent. Channels refer to number of colour channels.
+The next step which I performed is one hot encoding i.e. using to_categorical ten classes are created,  one for each digit.
+Step-2 
+Once we are done with data pre-processing, it is now the turn to create the Neural Network Model. I have followed the one provided in TensorFlow tutorial.
+Convolution->ReLu->MaxPooling->Convolution->ReLu->MaxPool->Flatten ,in between drop out details are provided as well. Dropouts are used to overcome the problem of overfitting i.e. a percentage of what is learnt by the model is erased. 
+Once the model is created, next step is to perform fit and predict. Initially I have used 5 epochs and no data augmentation is not done yet. I will be updating the details further in coming days.
+The accuracy is now 99.02 and it will improve gradually as I will be introducing data augmentation and running with higher epochs to achieve better accuracy.
+The accuracy was 92% initially and now it is 99.02%.  
+Look into my_MNIST.py file for the code and further details.
+
+
